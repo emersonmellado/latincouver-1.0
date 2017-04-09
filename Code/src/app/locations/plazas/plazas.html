@@ -1,0 +1,22 @@
+<ion-view class="no-padding" hide-nav-bar="true" view-title="Events">
+    <div class="bar bar-header bar-positive">
+        <button ui-sref="event" class="button icon ion-android-arrow-back">
+        </button>
+        <h1 class="title">
+            PLAZAS
+        </h1>
+    </div>
+    <ion-content class="has-header content" overflow-scroll="false">
+        <div class="plaza-list">
+            <div class="row" data-ng-repeat="p in plaza.list" ui-sref="detail({id:p.id})">
+                <div>
+                    <img data-ng-src="{{p.image}}">
+                </div>
+                <div class="{{p.color}}">
+                    <p>{{p.name}}</p>
+                    <i class="ion ion-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

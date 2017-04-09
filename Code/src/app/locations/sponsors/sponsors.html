@@ -1,0 +1,26 @@
+<ion-view class="no-padding" hide-nav-bar="true" view-title="Events">
+    <div class="bar bar-header bar-positive">
+        <button ui-sref="event" class="button icon ion-android-arrow-back">
+        </button>
+        <p class="title">
+            sponsors
+        </p>
+    </div>
+    <ion-content class="has-header content" overflow-scroll="false">
+        <div ui-view>
+            <div class="list list-inset">
+              <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" ng-model="vendorSearch">
+              </label>
+            </div>                
+            <div class="list"> 
+                <div class="item text-center" data-ng-repeat="v in sponsors.fullList | filter:vendorSearch">
+                    <img class="plaza-image" style="max-width: 250px;" data-ng-src="{{v.image}}" data-ng-show="v.image">
+                    <h2>{{v.name}}</h2>
+                    <h5>{{v.plaza}}</h5>
+                </div>                   
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

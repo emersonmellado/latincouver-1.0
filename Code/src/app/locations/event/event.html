@@ -1,0 +1,117 @@
+<ion-view class="no-padding" hide-nav-bar="true" view-title="Events">
+    <ion-side-menus>
+        <ion-side-menu side="left">
+            <ion-content class="side-menu-list">
+                <div class="list">
+                    <img class="title-image-menu" src="assets/images/logo.png" alt="">
+                    <a menu-close ui-sref="home" class="item item-list item-icon-left">
+                        <i class="icon ion-calendar"></i> Next Events
+                    </a>
+                    <div class="item item-divider">
+                        Event data
+                    </div>
+                    <a menu-close ui-sref="plazas" class="item item-list item-icon-left">
+                        <i class="icon ion-beer"></i> Plazas
+                    </a>
+                    <a menu-close ui-sref="vendors" class="item item-list item-icon-left">
+                        <i class="icon ion-pricetags"></i> Vendors
+                    </a>
+                    <a menu-close ui-sref="map" class="item item-list item-icon-left">
+                        <i class="icon ion-ios-location-outline"></i> Map
+                    </a>
+                    <!--
+                    <a menu-close ui-sref="faq" class="item item-list item-icon-left">
+                        <i class="icon ion-ios-checkmark-outline"></i> FAQ
+                    </a>
+                    -->
+                    <a menu-close ui-sref="contest" class="item item-list item-icon-left">
+                        <i class="icon ion-happy-outline"></i> Contest
+                    </a>
+                    
+                    <div class="item item-divider">
+                        Community
+                    </div>
+                    <!--
+                    <a menu-close ui-sref="media" target="_top" class="item item-list item-icon-left">
+                        <i class="icon ion-pound"></i> Media
+                        <span class="item-note">#shinetogether</span>
+                    </a>
+                    -->
+                    <a menu-close ui-sref="sponsors" class="item item-list item-icon-left">
+                        <i class="icon ion-android-contacts "></i> Sponsors
+                    </a>                    
+                    <a menu-close class="item item-list item-icon-left" href="#" onclick="window.open('http://www.latincouver.ca/donation-form', '_system'); return false;">
+                        <i class="icon ion-cash"></i> Donate
+                    </a>
+                </div>
+            </ion-content>
+        </ion-side-menu>
+        <ion-side-menu-content>
+            <div class="bar bar-header bar-positive ">
+                <button class="button icon ion-navicon " ng-click="event.toggleLeft() "></button>
+                <span class="title ">
+                  CARNAVAL DEL SOL 
+                </span>
+            </div>
+            <div class="bar bar-subheader no-padding">
+                <div class="button-bar">
+                    <div class="button col col-25 event-header-button" data-ng-class="{'event-active' : $state.is('event')}" ui-sref="event">
+                        <div>
+                            <i class="icon ion-home"></i> MAIN
+                        </div>
+                    </div>
+                    <div ui-sref=".eat" class="button col col-25 event-header-button" data-ng-class="{'event-active' : $state.is('event.eat')}">
+                        <div>
+                            <img ng-src="assets/images/icons/eat.png "> EAT
+                        </div>
+                    </div>
+                    <div ui-sref=".play" class="button col col-25 event-header-button " data-ng-class="{'event-active' : $state.is('event.play')}">
+                        <div>
+                            <img ng-src="assets/images/icons/play.png "> PLAY
+                        </div>
+                    </div>
+                    <div ui-sref=".live" class="button col col-25 event-header-button " data-ng-class="{'event-active' : $state.is('event.live')}">
+                        <div>
+                            <img ng-src="assets/images/icons/live.png "> LIVE
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ion-content class="has-subheader content" overflow-scroll="false">
+                <div data-ng-show="$state.is('event')">
+                    <div class="event-navigation">
+                        <button class="button button-next" ng-click="event.nextSlide()">
+                            <i class="icon ion-chevron-right"></i>
+                        </button>
+                        <button class="button button-prev" ng-click="event.prevSlide()">
+                            <i class="icon ion-chevron-left"></i>
+                        </button>
+                    </div>
+                    <ion-slides class="event-slides" options="event.slider.sliderOptions" slider="event.slider.sliderDelegate">
+                        <ion-slide-page class="event-slide-box" ng-repeat="slide in event.slider.images" ui-sref="detailMaster({section:slide.detailMaster, id:slide.id})">
+                            <img ng-src="{{slide.image}}">
+                        </ion-slide-page>
+                    </ion-slides>
+                </div>
+                <div ui-view>
+                    <div class="list event-list">
+                        <div class="row" data-ng-repeat="p in event.vendorsList" ng-if="$index % 2 == 0">
+                            <div class="col col-50 grow" ui-sref="detailMaster({section:event.vendorsList[$index].detailMaster, id:event.vendorsList[$index].id})">
+                                <img data-ng-src="{{event.vendorsList[$index].image}}" data-ng-show="event.vendorsList[$index].image">
+                                <div class="{{event.vendorsList[$index].color}}">
+                                    <h5>{{event.vendorsList[$index].name}}</h5>
+                                </div>
+                            </div>
+                            <div class="col col-50 grow" ng-show="event.vendorsList[$index+1]" ui-sref="detailMaster({section:event.vendorsList[$index].detailMaster, id:event.vendorsList[$index+1].id})">
+                                <img data-ng-src="{{event.vendorsList[$index+1].image}}" data-ng-show="event.vendorsList[$index+1].image">
+                                <div class="{{event.vendorsList[$index+1].color}}">
+                                    <h5>{{event.vendorsList[$index+1].name}}</h5>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </ion-content>
+        </ion-side-menu-content>
+    </ion-side-menus>
+</ion-view>
